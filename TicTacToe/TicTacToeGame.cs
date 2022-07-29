@@ -72,12 +72,11 @@
             var yHigherBoundary = Math.Min(GameBoardLength - 1 - 2, _lastPlacedY + 2);
 
 
-            bool didWin = false;
+            bool wonTheGame = false;
             char winnerChar = ActivePlayer ? XValue : YValue;
-            bool win = true;
 
-            bool firstWin = false;
-
+            // Check left to right
+            bool horizontalWin;
             for (int x = xLowerBoundary; x <= xHigherBoundary; x++)
             {
                 for (int y = yLowerBoundary; y <= yHigherBoundary; y++)
@@ -85,108 +84,132 @@
                     // Check left to right
                     for (int i = x; i <= x + 2; i++)
                     {
-                        firstWin = true;
+                        horizontalWin = true;
                         for (int j = y; j <= y + 2; j++)
                         {
                             if (Board[i, j] != winnerChar)
                             {
-                                firstWin = false;
+                                horizontalWin = false;
                                 break;
                             }
                         }
-                        if (firstWin)
+                        if (horizontalWin)
                         {
-                            didWin = true;
+                            wonTheGame = true;
                             break;
                         }
                     }
-                    if (didWin)
+                    if (wonTheGame)
                     {
                         break;
                     }
                 }
-                if (didWin)
+                if (wonTheGame)
                 {
                     break;
                 }
             }
 
             // Check top to bottom
+            bool verticalWin;
             for (int x = xLowerBoundary; x <= xHigherBoundary; x++)
             {
                 for (int y = yLowerBoundary; y <= yHigherBoundary; y++)
                 {
                     for (int j = y; j <= y + 2; j++)
                     {
-                        firstWin = true;
+                        verticalWin = true;
                         for (int i = x; i <= x + 2; i++)
                         {
                             if (Board[i, j] != winnerChar)
                             {
-                                firstWin = false;
+                                verticalWin = false;
                                 break;
                             }
                         }
-                        if (firstWin)
+                        if (verticalWin)
                         {
-                            didWin = true;
+                            wonTheGame = true;
                             break;
                         }
                     }
-                    if (didWin)
+                    if (wonTheGame)
                     {
                         break;
                     }
                 }
-                if (didWin)
+                if (wonTheGame)
                 {
                     break;
                 }
             }
 
-
-            // Check top left to bottom right
-
-            for (int i = xLowerBoundary, j = yLowerBoundary; i < xLowerBoundary + 2; i++, j++)
+            if (!wonTheGame)
             {
-                if (Board[i, j] != winnerChar)
+                var xDiagonalLowerBoundary = Math.Max(0, _lastPlacedX - 2);
+                var yDiagonalLowerBoundary = Math.Max(0, _lastPlacedY - 2);
+                var xDiagonalHigherBoundary = Math.Min(_lastPlacedX - 2, _lastPlacedX + 2);
+                var yDiagonalHigherBoundary = Math.Min(_lastPlacedY - 2, _lastPlacedY + 2);
+
+                for(
+                    int x = xDiagonalLowerBoundary, y = yDiagonalLowerBoundary;
+                    x <= Math.Min(xDiagonalHigherBoundary, yDiagonalHigherBoundary);
+                    x++, y++)
                 {
-                    win = false;
-                    break;
+                    bool diagonalWin = true;
+
+                    for (int i = x, j = y; i < x + 2; i++, j++)
+                    {
+                        if (Board[i, j] != winnerChar)
+                        {
+                            diagonalWin = false;
+                            break;
+                        }
+                    }
+
+                    if(diagonalWin)
+                    {
+                        wonTheGame = true;
+                    }
                 }
+
+                //var xDiagonalMirroredLowerBoundary = Math.Max(0, _lastPlacedX - 2);
+                //var yDiagonalMirroredLowerBoundary = Math.Min(GameBoardLength - 1, _lastPlacedY + 2);
+                //var xDiagonalMirroredHigherBoundary = Math.Min(GameBoardLength - 1, _lastPlacedX + 2);
+                //var yDiagonalMirroredHigherBoundary = Math.Max(0, _lastPlacedY - 2);
+
+                //for (
+                //    int x = xDiagonalMirroredLowerBoundary;
+                //    x < Math.Min(xDiagonalMirroredHigherBoundary, yDiagonalMirroredLowerBoundary);
+                //    x++)
+                //{
+                //    bool diagonalMirroredWin = true;
+
+                //    for (int i = x, j = yDiagonalMirroredLowerBoundary; i < Math.Min(xDiagonalMirroredHigherBoundary, x + 2); i++, j--)
+                //    {
+                //        if (Board[i, j] != winnerChar)
+                //        {
+                //            diagonalMirroredWin = false;
+                //            break;
+                //        }
+                //    }
+
+                //    if (diagonalMirroredWin)
+                //    {
+                //        wonTheGame = true;
+                //    }
+                //}
             }
 
-            if (win)
-            {
-                didWin = true;
-            }
-
-            // Check top right to bottom left
-            win = true;
-
-            for (int i = xLowerBoundary, j = Math.Max(yHigherBoundary, 2); i < xLowerBoundary + 2; i++, j--)
-            {
-                if (Board[i, j] != winnerChar)
-                {
-                    win = false;
-                    break;
-                }
-            }
-
-            if (win)
-            {
-                didWin = true;
-            }
-
-            if (!didWin && _placementCounter == (GameBoardLength * GameBoardLength))
+            if (!wonTheGame && _placementCounter == (GameBoardLength * GameBoardLength))
             {
                 return TicTacToeResult.Tie;
             }
-            else if(didWin && ActivePlayer)
+            else if(wonTheGame && ActivePlayer)
             {
                 return TicTacToeResult.XWon;
             }
-            else if(didWin)
+            else if(wonTheGame)
             {
                 return TicTacToeResult.YWon;
             }
