@@ -42,6 +42,54 @@ namespace TicTacToe.Tests
         }
 
         [Test]
+        public void PlayXDiagonalTest()
+        {
+            var valuePairs = new List<Tuple<int, int>>
+            {
+                // X
+                Tuple.Create(0, 0),
+                // O
+                Tuple.Create(1, 0),
+                // X
+                Tuple.Create(1, 1),
+                // O
+                Tuple.Create(2, 1),
+                // X
+                Tuple.Create(2, 2),
+            };
+
+            foreach (var pair in valuePairs)
+            {
+                Assert.That(_game.SetXYValue(pair.Item1, pair.Item2), Is.EqualTo(TicTacToeSetResult.Success));
+            }
+            Assert.That(_game.GetWinner(), Is.EqualTo(TicTacToeResult.XWon));
+        }
+
+        [Test]
+        public void PlayXDiagonalMirroredTest()
+        {
+            var valuePairs = new List<Tuple<int, int>>
+            {
+                // X
+                Tuple.Create(0, 2),
+                // O
+                Tuple.Create(1, 0),
+                // X
+                Tuple.Create(1, 1),
+                // O
+                Tuple.Create(2, 1),
+                // X
+                Tuple.Create(2, 0),
+            };
+
+            foreach (var pair in valuePairs)
+            {
+                Assert.That(_game.SetXYValue(pair.Item1, pair.Item2), Is.EqualTo(TicTacToeSetResult.Success));
+            }
+            Assert.That(_game.GetWinner(), Is.EqualTo(TicTacToeResult.XWon));
+        }
+
+        [Test]
         public void PlayYTest()
         {
             var valuePairs = new List<Tuple<int, int>>
@@ -58,6 +106,58 @@ namespace TicTacToe.Tests
                 Tuple.Create(2, 2),
                 // O
                 Tuple.Create(1, 2)
+            };
+
+            foreach (var pair in valuePairs)
+            {
+                Assert.That(_game.SetXYValue(pair.Item1, pair.Item2), Is.EqualTo(TicTacToeSetResult.Success));
+            }
+            Assert.That(_game.GetWinner(), Is.EqualTo(TicTacToeResult.YWon));
+        }
+
+        [Test]
+        public void PlayYDiagonalTest()
+        {
+            var valuePairs = new List<Tuple<int, int>>
+            {
+                // X
+                Tuple.Create(1, 0),
+                // O
+                Tuple.Create(0, 0),
+                // X
+                Tuple.Create(0, 1),
+                // O
+                Tuple.Create(1, 1),
+                // X
+                Tuple.Create(0, 2),
+                // O
+                Tuple.Create(2, 2)
+            };
+
+            foreach (var pair in valuePairs)
+            {
+                Assert.That(_game.SetXYValue(pair.Item1, pair.Item2), Is.EqualTo(TicTacToeSetResult.Success));
+            }
+            Assert.That(_game.GetWinner(), Is.EqualTo(TicTacToeResult.YWon));
+        }
+
+        [Test]
+        public void PlayYDiagonalMirroredTest()
+        {
+            var valuePairs = new List<Tuple<int, int>>
+            {
+                // X
+                Tuple.Create(1, 0),
+                // O
+                Tuple.Create(2, 0),
+                // X
+                Tuple.Create(0, 1),
+                // O
+                Tuple.Create(1, 1),
+                // X
+                Tuple.Create(1, 2),
+                // O
+                Tuple.Create(0, 2)
             };
 
             foreach (var pair in valuePairs)
