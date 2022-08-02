@@ -25,7 +25,7 @@ namespace TicTacToe.Tests
                 Tuple.Create(_boardSize * _boardSize, _boardSize)
             };
 
-            foreach(var pair in valuePairs)
+            foreach (var pair in valuePairs)
             {
                 Assert.That(_game.SetXYValue(pair.Item1, pair.Item2), Is.EqualTo(TicTacToeSetResult.InvalidCoordinates));
             }
@@ -43,6 +43,8 @@ namespace TicTacToe.Tests
                 Tuple.Create(0, 1),
                 Tuple.Create(1, 0)
             };
+
+            Helpers.PrintTicTacToe(_game, valuePairs);
 
             foreach (var pair in valuePairs)
             {

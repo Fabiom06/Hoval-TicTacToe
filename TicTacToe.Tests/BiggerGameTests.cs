@@ -28,6 +28,8 @@
                 Tuple.Create(0, 2),
             };
 
+            Helpers.PrintTicTacToe(_game, valuePairs);
+
             foreach (var pair in valuePairs)
             {
                 Assert.That(_game.SetXYValue(pair.Item1, pair.Item2), Is.EqualTo(TicTacToeSetResult.Success));
@@ -51,6 +53,8 @@
                 // X
                 Tuple.Create(1, 2),
             };
+
+            Helpers.PrintTicTacToe(_game, valuePairs);
 
             foreach (var pair in valuePairs)
             {
@@ -76,6 +80,8 @@
                 Tuple.Create(2, 2),
             };
 
+            Helpers.PrintTicTacToe(_game, valuePairs);
+
             foreach (var pair in valuePairs)
             {
                 Assert.That(_game.SetXYValue(pair.Item1, pair.Item2), Is.EqualTo(TicTacToeSetResult.Success));
@@ -99,6 +105,8 @@
                 // X
                 Tuple.Create(3, 3),
             };
+
+            Helpers.PrintTicTacToe(_game, valuePairs);
 
             foreach (var pair in valuePairs)
             {
@@ -124,6 +132,8 @@
                 Tuple.Create(2, 0),
             };
 
+            Helpers.PrintTicTacToe(_game, valuePairs);
+
             foreach (var pair in valuePairs)
             {
                 Assert.That(_game.SetXYValue(pair.Item1, pair.Item2), Is.EqualTo(TicTacToeSetResult.Success));
@@ -147,6 +157,8 @@
                 // X
                 Tuple.Create(3, 1),
             };
+
+            Helpers.PrintTicTacToe(_game, valuePairs);
 
             foreach (var pair in valuePairs)
             {
@@ -174,6 +186,8 @@
                 Tuple.Create(1, 2)
             };
 
+            Helpers.PrintTicTacToe(_game, valuePairs);
+
             foreach (var pair in valuePairs)
             {
                 Assert.That(_game.SetXYValue(pair.Item1, pair.Item2), Is.EqualTo(TicTacToeSetResult.Success));
@@ -199,6 +213,8 @@
                 // O
                 Tuple.Create(2, 2)
             };
+
+            Helpers.PrintTicTacToe(_game, valuePairs);
 
             foreach (var pair in valuePairs)
             {
@@ -226,6 +242,8 @@
                 Tuple.Create(2, 2)
             };
 
+            Helpers.PrintTicTacToe(_game, valuePairs);
+
             foreach (var pair in valuePairs)
             {
                 Assert.That(_game.SetXYValue(pair.Item1, pair.Item2), Is.EqualTo(TicTacToeSetResult.Success));
@@ -251,6 +269,8 @@
                 // O
                 Tuple.Create(3, 3)
             };
+
+            Helpers.PrintTicTacToe(_game, valuePairs);
 
             foreach (var pair in valuePairs)
             {
@@ -278,6 +298,8 @@
                 Tuple.Create(0, 2)
             };
 
+            Helpers.PrintTicTacToe(_game, valuePairs);
+
             foreach (var pair in valuePairs)
             {
                 Assert.That(_game.SetXYValue(pair.Item1, pair.Item2), Is.EqualTo(TicTacToeSetResult.Success));
@@ -303,6 +325,8 @@
                 // O
                 Tuple.Create(1, 3)
             };
+
+            Helpers.PrintTicTacToe(_game, valuePairs);
 
             foreach (var pair in valuePairs)
             {
