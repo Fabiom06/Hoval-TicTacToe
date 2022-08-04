@@ -1,6 +1,6 @@
 ﻿namespace TicTacToe.Tests
 {
-    public class BiggerGameTests
+    public class FourByFour
     {
         private const int _boardSize = 4;
         private TicTacToeGame _game;

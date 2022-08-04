@@ -112,11 +112,21 @@
                 }
             }
 
+            var isAtLeftSide = _lastPlacedY == 0;
+            var isAtTopSide = _lastPlacedX == 0;
+            var isAtBottomSide = _lastPlacedX == (GameBoardLength - 1);
+            var isAtRightSide = _lastPlacedY == (GameBoardLength - 1);
+
             var xDiagonalLowerBoundary = Math.Max(0, _lastPlacedX - 2);
             var yDiagonalLowerBoundary = Math.Max(0, _lastPlacedY - 2);
 
             var xDiagonalHigherBoundary = Math.Min(_lastPlacedX, GameBoardLength - 1 - 2);
             var yDiagonalHigherBoundary = Math.Min(_lastPlacedY, GameBoardLength - 1 - 2);
+
+            if(isAtTopSide)
+            {
+                xDiagonalLowerBoundary = _lastPlacedX;
+            }
 
             for (
                 int x = xDiagonalLowerBoundary, y = yDiagonalLowerBoundary;
@@ -146,11 +156,6 @@
             var xDiagonalMirroredHigherBoundary = Math.Min(_lastPlacedX + 2, GameBoardLength - 1);
             var yDiagonalMirroredLowerBoundary = Math.Max(0, _lastPlacedY - 2);
 
-            var isAtLeftSide = _lastPlacedY == 0;
-            var isAtTopSide = _lastPlacedX == 0;
-            var isAtBottomSide = _lastPlacedX == (GameBoardLength - 1);
-            var isAtRightSide = _lastPlacedY == (GameBoardLength - 1);
-
             if (isAtBottomSide)
             {
                 yDiagonalMirroredLowerBoundary = _lastPlacedY;
@@ -168,6 +173,11 @@
             if(isAtTopSide)
             {
                 yDiagonalMirroredHigherBoundary = _lastPlacedY;
+            }
+
+            if (isAtLeftSide)
+            {
+                xDiagonalMirroredHigherBoundary = _lastPlacedX;
             }
 
             if (

@@ -39,8 +39,6 @@ namespace TicTacToe.Client
 
         }
 
-
-
         private void Mid_Left_Click(object sender, RoutedEventArgs e)
         {
 
